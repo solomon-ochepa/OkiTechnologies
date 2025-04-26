@@ -12,7 +12,6 @@ use Illuminate\Support\Facades\Auth;
 use Modules\Account\Database\Factories\AccountFactory;
 use Modules\Transaction\App\Models\Transaction;
 use Modules\Transaction\App\Models\TransactionEntry;
-use Modules\User\App\Models\User;
 
 class Account extends Model
 {
