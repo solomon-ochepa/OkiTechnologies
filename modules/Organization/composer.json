@@ -1,0 +1,29 @@
+{
+    "name": "solomon-ochepa/organization",
+    "description": "",
+    "authors": [
+        {
+            "name": "Solomon Ochepa",
+            "email": "solomonochepa@gmail.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [],
+            "aliases": {}
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\Organization\\App\\": "app/",
+            "Modules\\Organization\\app\\Livewire\\": "app/Livewire/",
+            "Modules\\Organization\\Database\\Factories\\": "database/factories/",
+            "Modules\\Organization\\Database\\Seeders\\": "database/seeders/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Modules\\Organization\\Tests\\": "tests/"
+        }
+    }
+}
