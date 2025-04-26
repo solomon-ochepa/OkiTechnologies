@@ -24,6 +24,7 @@ class AccountSeeder extends Seeder
             $account = [
                 'name' => 'Savings',
                 'number' => ++$account_number,
+                'primary' => true,
                 'accountable_type' => get_class($accountable),
                 'accountable_id' => $accountable->id,
             ];
