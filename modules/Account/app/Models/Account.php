@@ -56,9 +56,14 @@ class Account extends Model
         return Attribute::get(fn ($key, $account) => str_pad($account['number'], max(3, strlen($account['number'])), '0', STR_PAD_LEFT));
     }
 
-    public function accountable()
+    public function manager()
     {
-        return $this->morphTo();
+        return $this->morphTo('manageable');
+    }
+
+    public function owner()
+    {
+        return $this->morphTo('accountable');
     }
 
     public function entries()
