@@ -16,7 +16,7 @@ class OrganizationController extends Controller
             'status' => 'success',
             'data' => [
                 // Add your data here
-            ]
+            ],
         ]);
     }
 
