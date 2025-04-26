@@ -12,6 +12,8 @@
         <!-- Wallet Card -->
         <livewire:account::wallet />
 
+        <livewire:account::widgets.slider />
+
         <!-- Transactions -->
         <livewire:transaction::recent />
 
