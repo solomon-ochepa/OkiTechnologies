@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AppController as AdminAppController;
 use App\Http\Controllers\AppController;
 use Illuminate\Support\Facades\Route;
 
@@ -14,7 +15,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 Route::middleware(['auth', 'permission:admin.dashboard'])->prefix('admin')->name('admin.')->group(function () {
     Route::redirect('/', 'admin/dashboard');
 
-    Route::get('dashboard', [AppController::class, 'admin_dashboard'])->name('dashboard');
+    Route::get('dashboard', [AdminAppController::class, 'admin_dashboard'])->name('dashboard');
 });
 
 require_once 'cli.php';
