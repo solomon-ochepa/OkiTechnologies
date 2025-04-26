@@ -101,12 +101,12 @@ class User extends Authenticatable
 
     public function accounts()
     {
-        return $this->hasMany(Account::class);
+        return $this->morphMany(Account::class, 'accountable');
     }
 
     public function account()
     {
-        return $this->hasOne(Account::class)->wherePrimary(1);
+        return $this->morphOne(Account::class, 'accountable')->wherePrimary(1);
     }
 
     public function balance(): Attribute

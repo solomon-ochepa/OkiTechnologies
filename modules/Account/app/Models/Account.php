@@ -22,12 +22,13 @@ class Account extends Model
      * The attributes that are mass assignable.
      */
     protected $fillable = [
-        'user_id',
-        'number',
         'name',
+        'number',
         'amount',
         'currency',
         'primary',
+        'accountable_type',
+        'accountable_id',
     ];
 
     /**
@@ -55,9 +56,9 @@ class Account extends Model
         return Attribute::get(fn ($key, $account) => str_pad($account['number'], max(3, strlen($account['number'])), '0', STR_PAD_LEFT));
     }
 
-    public function user()
+    public function accountable()
     {
-        return $this->belongsTo(User::class);
+        return $this->morphTo();
     }
 
     public function entries()

@@ -13,18 +13,17 @@ return new class extends Migration
     {
         Schema::create('accounts', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->foreignUuid('user_id')->nullable()->constrained()->cascadeOnUpdate()->cascadeOnDelete();
-            $table->integer('number')->unique();
-            $table->string('name')->default('Savings');
-            $table->enum('type', ['asset', 'liability', 'equity', 'revenue', 'expense'])->nullable()->default('liability');
-            $table->decimal('amount', 18)->index()->default(0);
-            $table->string('currency')->nullable();
-            $table->boolean('primary')->nullable()->default(true);
+            $table->string('name')->index();
+            $table->integer('number')->nullable()->unique();
+            $table->decimal('amount', 18)->default(0);
+            $table->char('currency', 3)->nullable()->default('NGN');
+            $table->boolean('primary')->nullable();
+            $table->uuidMorphs('accountable');
             $table->timestamps();
             $table->softDeletes();
 
-            $table->unique(['user_id', 'name'], 'unique_account_name');
-            $table->unique(['user_id', 'primary'], 'unique_primary_account');
+            $table->unique(['name', 'number', 'currency', 'accountable_type', 'accountable_id'], 'unique_account_name');
+            $table->unique(['primary', 'number', 'currency', 'accountable_type', 'accountable_id'], 'unique_primary_account');
         });
     }
 

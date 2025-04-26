@@ -10,6 +10,7 @@
     <div id="appCapsule">
         <div class="row section gy-3 mb-3 mt-0">
             <div class="col-md-auto">
+                {{-- Quick links --}}
                 <x-a class="card text-dark" route='wallet'>
                     <div class="-img-wrapper card-img card-img-top bg-dark -position-absolute">
                         <i class="fas text-light fa-wallet fa-xl image-block imaged w48"></i>
