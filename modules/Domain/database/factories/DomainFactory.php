@@ -4,6 +4,7 @@ namespace Modules\Domain\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Modules\Domain\App\Models\Domain;
+use Modules\Tenant\App\Models\Tenant;
 
 class DomainFactory extends Factory
 {
@@ -17,6 +18,9 @@ class DomainFactory extends Factory
      */
     public function definition(): array
     {
-        return [];
+        return [
+            'domain' => $this->faker->unique()->domainName(),
+            'tenant_id' => Tenant::factory()->create()->id,
+        ];
     }
 }
