@@ -6,7 +6,7 @@ use Illuminate\Support\Str;
 use Livewire\Attributes\On;
 use Livewire\Component;
 use Livewire\WithPagination;
-use Modules\Organization\app\Livewire\Forms\Admin\CreateForm;
+use Modules\Organization\app\Livewire\Forms\Tenant\Admin\CreateForm;
 use Modules\Organization\App\Models\Organization;
 
 class Create extends Component
