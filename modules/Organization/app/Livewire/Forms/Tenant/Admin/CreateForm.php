@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Organization\app\Livewire\Forms\Admin;
+namespace Modules\Organization\app\Livewire\Forms\Tenant\Admin;
 
 use Livewire\Form;
 use Modules\Organization\App\Http\Requests\OrganizationRequest;
