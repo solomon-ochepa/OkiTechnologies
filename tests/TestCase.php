@@ -17,13 +17,13 @@ abstract class TestCase extends BaseTestCase
 
     protected function setUp(): void
     {
-        $this->tenancy();
+        // $this->tenancy();
 
         parent::setUp();
 
-        if ($this->tenancy) {
-            $this->initializeTenancy();
-        }
+        // if ($this->tenancy) {
+        //     $this->initializeTenancy();
+        // }
     }
 
     public function initializeTenancy()
@@ -48,12 +48,5 @@ abstract class TestCase extends BaseTestCase
                 }
             }
         }
-    }
-
-    protected function tearDown(): void
-    {
-        tenancy()->all()->each->delete();
-
-        parent::tearDown();
     }
 }
