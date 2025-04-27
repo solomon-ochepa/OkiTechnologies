@@ -29,11 +29,11 @@ abstract class TestCase extends BaseTestCase
     public function initializeTenancy()
     {
         $this->tenant = Tenant::factory()->create();
-        $this->tenant->domains()->create([
-            'domain' => Str::slug($this->tenant->name),
-        ]);
+        // $this->tenant->domains()->create([
+        //     'domain' => Str::slug($this->tenant->name),
+        // ]);
 
-        tenancy()->initialize($this->tenant);
+        // tenancy()->initialize($this->tenant);
     }
 
     protected function tenancy(): void
@@ -42,7 +42,7 @@ abstract class TestCase extends BaseTestCase
 
         foreach ($backtrace as $trace) {
             if (isset($trace['file'])) {
-                if (str_contains($trace['file'], DIRECTORY_SEPARATOR.'Tenant'.DIRECTORY_SEPARATOR)) {
+                if (str_contains($trace['file'], DIRECTORY_SEPARATOR . 'Tenant' . DIRECTORY_SEPARATOR)) {
                     $this->tenancy = true;
                     break;
                 }
