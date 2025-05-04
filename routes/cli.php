@@ -42,7 +42,7 @@ Route::prefix('cli')->name('cli.')->group(function () {
 
             $output = new BufferedOutput;
 
-            Artisan::call(($request->run ?? 'optimize:clear'), ['--force' => true], $output);
+            Artisan::call(($request->run ?? 'optimize:clear'), [], $output);
 
             // Display the output
             return nl2br(e($output->fetch()));
