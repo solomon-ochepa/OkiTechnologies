@@ -42,7 +42,7 @@ abstract class TestCase extends BaseTestCase
 
         foreach ($backtrace as $trace) {
             if (isset($trace['file'])) {
-                if (str_contains($trace['file'], DIRECTORY_SEPARATOR . 'Tenant' . DIRECTORY_SEPARATOR)) {
+                if (str_contains($trace['file'], DIRECTORY_SEPARATOR.'Tenant'.DIRECTORY_SEPARATOR)) {
                     $this->tenancy = true;
                     break;
                 }
