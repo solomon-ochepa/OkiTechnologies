@@ -7,6 +7,7 @@ use Modules\Role\App\Models\Role;
 use Modules\Tenant\App\Http\Requests\TenantRequest;
 use Modules\Tenant\App\Models\Tenant;
 use Modules\User\App\Models\User;
+use Illuminate\Support\Str;
 
 class CreateForm extends Form
 {
@@ -72,6 +73,7 @@ class CreateForm extends Form
         $tenant = Tenant::create([
             'name' => $this->name,
             'user_id' => $this->admin,
+            'tenancy_db_name' => Str::slug($this->name),
         ]);
 
         // ###############################
