@@ -91,16 +91,18 @@ class CreateForm extends Form
             ]);
         }
 
-        $admin = User::find($this->admin);
+        if ($this->tenant->database_exists()) {
+            $admin = User::find($this->admin);
 
-        // Create tenant's default admin.
-        $tenant->run(function () use ($admin) {
-            $user = $admin->replicate();
-            $user->id = $admin->id;
-            $user->save();
+            // Create tenant's default admin.
+            $tenant->run(function () use ($admin) {
+                $user = $admin->replicate();
+                $user->id = $admin->id;
+                $user->save();
 
-            $user->assignRole(Role::findOrCreate('admin'));
-        });
+                $user->assignRole(Role::findOrCreate('admin'));
+            });
+        }
     }
 
     /**
