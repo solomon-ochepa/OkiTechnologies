@@ -41,8 +41,9 @@ Route::prefix('cli')->name('cli.')->group(function () {
             Config::set('app.debug', true);
 
             $output = new BufferedOutput;
+            $queries = $request->except('run');
 
-            Artisan::call(($request->run ?? 'optimize:clear'), [], $output);
+            Artisan::call(($request->run ?? 'optimize:clear'), $queries, $output);
 
             // Display the output
             return nl2br(e($output->fetch()));
