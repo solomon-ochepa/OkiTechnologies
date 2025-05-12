@@ -264,36 +264,6 @@ class TenancyServiceProvider extends ServiceProvider
     }
 
     /**
-     * Define the tenant domains' routes for the application.
-     *
-     * @source Tenancy
-     */
-    protected function tenant_domains(): void
-    {
-        $tenant_web_routes = [];
-        if (file_exists(base_path('routes/tenant/web.php'))) {
-            $tenant_web_routes[] = glob(base_path('routes/tenant/web.php'));
-        }
-        $tenant_web_routes[] = glob(base_path('modules/*/routes/tenant/web.php'));
-        foreach ($tenant_web_routes as $web) {
-            Route::middleware(['web', InitializeTenancyByDomainOrSubdomain::class, PreventAccessFromCentralDomains::class])
-                ->group($web);
-        }
-
-        $tenant_api_routes = [];
-        if (file_exists(base_path('routes/tenant/api.php'))) {
-            $tenant_api_routes[] = glob(base_path('routes/tenant/api.php'));
-        }
-        $tenant_api_routes[] = glob(base_path('modules/*/routes/tenant/api.php'));
-        foreach ($tenant_api_routes as $api) {
-            Route::middleware(['api', InitializeTenancyByDomainOrSubdomain::class, PreventAccessFromCentralDomains::class])
-                ->prefix('api')
-                ->name('api.')
-                ->group($api);
-        }
-    }
-
-    /**
      * @source Tenancy
      */
     protected function makeTenancyMiddlewareHighestPriority()

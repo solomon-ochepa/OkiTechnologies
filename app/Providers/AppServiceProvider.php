@@ -39,7 +39,7 @@ class AppServiceProvider extends ServiceProvider
          * This works in the app by using gate-related functions like auth()->user->can() and @can()
          * NOTE: Gate::after rules need to return null rather than false, else it will interfere with normal policy operation.
          */
-        Gate::after(fn($user, $ability) => $user->hasRole(['super-admin', 'admin', 'developer']) ? true : null);
+        Gate::after(fn ($user, $ability) => $user->hasRole(['super-admin', 'admin', 'developer']) ? true : null);
 
         Paginator::useBootstrap();
 
