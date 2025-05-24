@@ -30,7 +30,7 @@ return [
             'routes/web' => 'routes/web.php',
             'routes/api' => 'routes/api.php',
             'views/index' => 'resources/views/index.blade.php',
-            'views/master' => 'resources/views/layouts/master.blade.php',
+            'views/master' => 'resources/views/components/layouts/master.blade.php',
             'scaffold/config' => 'config/config.php',
             'composer' => 'composer.json',
             'assets/js/app' => 'resources/assets/js/app.js',
@@ -70,7 +70,8 @@ return [
                 'AUTHOR_EMAIL',
                 'MODULE_NAMESPACE',
                 'PROVIDER_NAMESPACE',
-                'APP_FOLDER_NAME',
+                'APP_PATH_NAMESPACE',
+                'APP_PATH',
             ],
         ],
         'gitkeep' => true,
@@ -110,13 +111,17 @@ return [
 
         /*
         |--------------------------------------------------------------------------
-        | The app path
+        | /app path
         |--------------------------------------------------------------------------
         |
-        | app folder name
-        | for example can change it to 'src' or 'App'
+        | Specifies a custom path for the /app directory.
+        |
+        | Examples:
+        |   ''     => '/app'  (default Laravel structure),
+        |   'src'  => '/src'  (custom location),
+        |   '/'    => '/'     (root directory).
         */
-        'app_folder' => '',
+        'app' => '',
 
         /*
         |--------------------------------------------------------------------------
@@ -171,7 +176,7 @@ return [
             'lang' => ['path' => 'lang', 'generate' => false],
 
             // resource/
-            'assets' => ['path' => 'resources/assets', 'generate' => false],
+            'assets' => ['path' => 'resources/assets', 'generate' => true],
             'component-view' => ['path' => 'resources/views/components', 'generate' => false],
             'views' => ['path' => 'resources/views', 'generate' => true],
 

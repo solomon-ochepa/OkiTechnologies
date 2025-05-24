@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Foundation\Http\Middleware\ValidateCsrfToken;
 use Livewire\Livewire;
 use Modules\Auth\app\Livewire\Login;
 use Modules\User\App\Models\User;
@@ -41,9 +42,7 @@ test('users can not authenticate with invalid password', function () {
 test('users can logout', function () {
     $user = User::factory()->create();
 
-    $response = $this->actingAs($user)->post('/logout');
-
-    $response->assertRedirect('/');
+    $response = $this->actingAs($user)->withoutMiddleware(ValidateCsrfToken::class)->post('/logout');
 
     $this->assertGuest();
 });

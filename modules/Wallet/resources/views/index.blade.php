@@ -1,5 +1,23 @@
-<x-wallet::layouts.master>
-    <h1>Hello World</h1>
+<x-tenancy::layouts.app>
+    @slot('title', 'Dashboard')
+    <x-layouts.app.sections.header class="bg-primary text-light">
+        @slot('title', config('app.name'))
+        @slot('links')
+            <x-header.notification-link />
+            <x-header.user-link />
+        @endslot
+    </x-layouts.app.sections.header>
 
-    <p>Module: {!! config('wallet.name') !!}</p>
-</x-wallet::layouts.master>
+    <div id="appCapsule">
+        <!-- Wallet Card -->
+        <livewire:account::wallet />
+
+        <livewire:account::widgets.slider />
+
+        <!-- Transactions -->
+        <livewire:transaction::recent />
+
+        <!-- Stats -->
+        <livewire:account::stats />
+    </div>
+</x-tenancy::layouts.app>

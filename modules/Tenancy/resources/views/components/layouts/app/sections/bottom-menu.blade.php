@@ -6,6 +6,13 @@
         </div>
     </x-a>
 
+    <x-a route="wallet">
+        <div class="col">
+            <ion-icon name="wallet-outline"></ion-icon>
+            <strong>Wallet</strong>
+        </div>
+    </x-a>
+
     <x-a route="settings">
         <div class="col">
             <ion-icon name="settings-outline"></ion-icon>

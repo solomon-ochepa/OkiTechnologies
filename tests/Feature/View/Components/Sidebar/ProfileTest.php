@@ -1,7 +1,13 @@
 <?php
 
-test('example', function () {
-    $response = $this->get('/');
+use Illuminate\Support\Facades\Blade;
+use Modules\User\App\Models\User;
 
-    $response->assertStatus(200);
+test('component renders correctly', function () {
+    $user = User::factory()->create();
+    $this->actingAs($user);
+
+    $output = Blade::render('<x-sidebar.profile />');
+
+    expect($output)->not->toBeEmpty();
 });

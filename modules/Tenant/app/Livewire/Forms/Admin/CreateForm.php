@@ -2,6 +2,7 @@
 
 namespace Modules\Tenant\app\Livewire\Forms\Admin;
 
+use Illuminate\Support\Str;
 use Livewire\Form;
 use Modules\Role\App\Models\Role;
 use Modules\Tenant\App\Http\Requests\TenantRequest;
@@ -72,6 +73,7 @@ class CreateForm extends Form
         $tenant = Tenant::create([
             'name' => $this->name,
             'user_id' => $this->admin,
+            'tenancy_db_name' => config('tenancy.database.prefix').Str::slug($this->name),
         ]);
 
         // ###############################
@@ -89,16 +91,18 @@ class CreateForm extends Form
             ]);
         }
 
-        $admin = User::find($this->admin);
+        if ($this->tenant->database_exists()) {
+            $admin = User::find($this->admin);
 
-        // Create tenant's default admin.
-        $tenant->run(function () use ($admin) {
-            $user = $admin->replicate();
-            $user->id = $admin->id;
-            $user->save();
+            // Create tenant's default admin.
+            $tenant->run(function () use ($admin) {
+                $user = $admin->replicate();
+                $user->id = $admin->id;
+                $user->save();
 
-            $user->assignRole(Role::findOrCreate('admin'));
-        });
+                $user->assignRole(Role::findOrCreate('admin'));
+            });
+        }
     }
 
     /**

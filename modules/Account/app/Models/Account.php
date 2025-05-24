@@ -12,7 +12,6 @@ use Illuminate\Support\Facades\Auth;
 use Modules\Account\Database\Factories\AccountFactory;
 use Modules\Transaction\App\Models\Transaction;
 use Modules\Transaction\App\Models\TransactionEntry;
-use Modules\User\App\Models\User;
 
 class Account extends Model
 {
@@ -22,12 +21,13 @@ class Account extends Model
      * The attributes that are mass assignable.
      */
     protected $fillable = [
-        'user_id',
-        'number',
         'name',
+        'number',
         'amount',
         'currency',
         'primary',
+        'accountable_type',
+        'accountable_id',
     ];
 
     /**
@@ -55,9 +55,14 @@ class Account extends Model
         return Attribute::get(fn ($key, $account) => str_pad($account['number'], max(3, strlen($account['number'])), '0', STR_PAD_LEFT));
     }
 
-    public function user()
+    public function manager()
     {
-        return $this->belongsTo(User::class);
+        return $this->morphTo('manageable');
+    }
+
+    public function owner()
+    {
+        return $this->morphTo('accountable');
     }
 
     public function entries()

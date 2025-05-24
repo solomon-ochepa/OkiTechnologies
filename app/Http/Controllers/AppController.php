@@ -14,9 +14,4 @@ class AppController extends Controller
     {
         return view('dashboard');
     }
-
-    public function admin_dashboard()
-    {
-        return view('livewire.admin.dashboard');
-    }
 }

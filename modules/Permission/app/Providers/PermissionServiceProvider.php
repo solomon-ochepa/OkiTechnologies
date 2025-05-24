@@ -30,10 +30,7 @@ class PermissionServiceProvider extends ServiceProvider
     /**
      * Register the service provider.
      */
-    public function register(): void
-    {
-        $this->app->register(RouteServiceProvider::class);
-    }
+    public function register(): void {}
 
     /**
      * Register translations.

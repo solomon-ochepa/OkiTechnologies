@@ -2,11 +2,13 @@
 
 namespace App\Providers;
 
+use Illuminate\Http\Request;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Pennant\Feature;
+use Laravel\Pennant\Middleware\EnsureFeaturesAreActive;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -24,6 +26,12 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Feature::discover();
+
+        EnsureFeaturesAreActive::whenInactive(
+            function (Request $request, array $features) {
+                abort(403, 'Feature Unavailable! Please contact your system admin for further support.');
+            }
+        );
 
         /**
          * Implicitly grant roles all permissions

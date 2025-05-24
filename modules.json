@@ -14,5 +14,6 @@
     "Tenancy": true,
     "Tenant": true,
     "Domain": true,
-    "Wallet": true
+    "Wallet": true,
+    "Organization": true
 }
